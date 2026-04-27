@@ -1,46 +1,46 @@
 import React from 'react';
+// Импортируем реальный каталог, так как файл Catalog.jsx у тебя есть в папке
+import CatalogPage from './Catalog';
 
-// Общий стиль для заглушек, чтобы вайб был поприятнее
-const PageWrapper = ({ name }) => (
-  <div style={{ 
-    display: 'flex', 
-    flexDirection: 'column', 
-    alignItems: 'center', 
-    justifyContent: 'center', 
-    height: '100vh', 
-    fontFamily: 'sans-serif',
-    background: '#f0f2f5',
-    color: '#1a1a1a'
-  }}>
-    <h1 style={{ fontSize: '3rem', marginBottom: '1rem' }}>{name}</h1>
-    <p style={{ color: '#666' }}>EduMarket METU — в процессе разработки</p>
+// Вспомогательный компонент для единообразного стиля страниц
+const PageLayout = ({ title, description }) => (
+  <div style={{ padding: '40px', textAlign: 'center', fontFamily: 'sans-serif' }}>
+    <h2 style={{ color: '#1e3a8a', fontSize: '2.5rem' }}>{title}</h2>
+    <p style={{ color: '#666', fontSize: '1.1rem' }}>{description}</p>
     <div style={{ 
-      marginTop: '2rem', 
-      padding: '1rem 2rem', 
-      background: '#007bff', 
-      color: 'white', 
-      borderRadius: '8px' 
-    }}>
-      Скоро здесь будет контент
-    </div>
+      marginTop: '30px', 
+      height: '4px', 
+      width: '60px', 
+      background: '#ef4444', 
+      margin: '30px auto' 
+    }}></div>
   </div>
 );
 
-// Именованные экспорты для App.jsx
-export const Landing = () => <PageWrapper name="Landing Page" />;
-export const LoginPage = () => <PageWrapper name="Login" />;
-export const RegisterPage = () => <PageWrapper name="Registration" />;
-export const Dashboard = () => <PageWrapper name="Dashboard" />;
-export const Internships = () => <PageWrapper name="Internships" />;
-export const Applications = () => <PageWrapper name="Applications" />;
-export const Contracts = () => <PageWrapper name="Contracts" />;
-export const Analytics = () => <PageWrapper name="Analytics" />;
-export const Notifications = () => <PageWrapper name="Notifications" />;
-export const CreateProject = () => <PageWrapper name="Create Project" />;
-export const MyProjects = () => <PageWrapper name="My Projects" />;
-export const CreateInternship = () => <PageWrapper name="Create Internship" />;
-export const Profile = () => <PageWrapper name="Profile" />;
+// 1. Реальный каталог
+export const Catalog = CatalogPage;
 
-// Default экспорт
+// 2. Остальные страницы (пока как качественные заглушки, которые ты сможешь наполнять)
+export const Landing = () => (
+  <PageLayout 
+    title="Добро пожаловать в EduMarket" 
+    description="Платформа для поиска стажировок и практики студентов МИТУ. Найди свой путь в IT уже сегодня." 
+  />
+);
+
+export const LoginPage = () => <PageLayout title="Вход в систему" description="Авторизуйтесь, чтобы получить доступ к профилю." />;
+export const RegisterPage = () => <PageLayout title="Регистрация" description="Создайте аккаунт студента или компании." />;
+export const Dashboard = () => <PageLayout title="Панель управления" description="Ваша активность и ключевые показатели." />;
+export const Internships = () => <PageLayout title="Стажировки" description="Список актуальных предложений от партнеров." />;
+export const Applications = () => <PageLayout title="Мои отклики" description="Статус ваших заявок на практику." />;
+export const Contracts = () => <PageLayout title="Договоры" description="Юридические документы и соглашения с компаниями." />;
+export const Analytics = () => <PageLayout title="Аналитика" description="Статистика востребованности навыков." />;
+export const Notifications = () => <PageLayout title="Уведомления" description="Последние обновления по вашим проектам." />;
+export const CreateProject = () => <PageLayout title="Создать проект" description="Опубликуйте новый проект для поиска команды." />;
+export const MyProjects = () => <PageLayout title="Мои проекты" description="Управление вашими текущими разработками." />;
+export const CreateInternship = () => <PageLayout title="Создать стажировку" description="Форма для добавления новой вакансии (для компаний)." />;
+export const Profile = () => <PageLayout title="Профиль" description="Ваши навыки, резюме и контактные данные." />;
+
+// Default экспорт для структуры Vite
 const Index = () => <Landing />;
 export default Index;
