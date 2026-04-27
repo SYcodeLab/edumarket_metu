@@ -1,7 +1,7 @@
 import React from 'react';
 
-// Именованные экспорты всех компонентов, которые ищет App.jsx
-export const Landing = () => <div>Landing Page - EduMarket METU</div>;
+// Все именованные экспорты, которые требует твой App.jsx
+export const Landing = () => <div>Landing Page</div>;
 export const LoginPage = () => <div>Login Page</div>;
 export const RegisterPage = () => <div>Register Page</div>;
 export const Dashboard = () => <div>Dashboard</div>;
@@ -10,7 +10,11 @@ export const Applications = () => <div>Applications</div>;
 export const Contracts = () => <div>Contracts</div>;
 export const Analytics = () => <div>Analytics</div>;
 export const Notifications = () => <div>Notifications</div>;
+export const CreateProject = () => <div>Create Project</div>;
+export const MyProjects = () => <div>My Projects</div>;
+export const CreateInternship = () => <div>Create Internship</div>;
+export const Profile = () => <div>Profile</div>;
 
-// Default экспорт тоже добавим на всякий случай
-const Index = () => <div>Index Page</div>;
+// Default экспорт
+const Index = () => <div>EduMarket METU - Main Index</div>;
 export default Index;
