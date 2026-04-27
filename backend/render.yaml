@@ -1,0 +1,31 @@
+# render.yaml — автоматический деплой на Render.com
+# Загрузи проект на GitHub, потом в Render → New → Blueprint
+
+services:
+  - type: web
+    name: edumarket-mitu-api
+    env: node
+    region: frankfurt          # ближе к Казахстану чем US
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true      # Render генерирует автоматически
+
+      # ── Заполни вручную в Render Dashboard ──
+      # DB_HOST        → из FreeSQLDatabase.com или Aiven
+      # DB_PORT        → обычно 3306
+      # DB_NAME        → имя базы
+      # DB_USER        → пользователь
+      # DB_PASSWORD    → пароль
+      # DB_SSL         → true (для облачных БД)
+      # CORS_ORIGIN    → https://your-app.onrender.com
+
+      - key: PORT
+        value: 10000

@@ -1,0 +1,16 @@
+import axios from 'axios';
+const A = axios.create({ baseURL: '/api' });
+A.interceptors.request.use(c=>{const t=localStorage.getItem('token');if(t)c.headers.Authorization=`Bearer ${t}`;return c;});
+A.interceptors.response.use(r=>r,e=>{if(e.response?.status===401){localStorage.clear();window.location.href='/login';}return Promise.reject(e);});
+export const authAPI={register:d=>A.post('/auth/register',d),login:d=>A.post('/auth/login',d),me:()=>A.get('/auth/me'),update:d=>A.put('/auth/profile',d)};
+export const projectsAPI={getAll:p=>A.get('/projects',{params:p}),getMy:()=>A.get('/projects/my'),getOne:id=>A.get(`/projects/${id}`),create:d=>A.post('/projects',d),update:(id,d)=>A.put(`/projects/${id}`,d),remove:id=>A.delete(`/projects/${id}`),getApps:id=>A.get(`/projects/${id}/applications`)};
+export const internshipsAPI={getAll:p=>A.get('/internships',{params:p}),create:d=>A.post('/internships',d)};
+export const applicationsAPI={apply:d=>A.post('/applications',d),getMy:()=>A.get('/applications/my'),updateStatus:(id,s,fb)=>A.put(`/applications/${id}/status`,{status:s,feedback:fb})};
+export const contractsAPI={create:d=>A.post('/contracts',d),getAll:()=>A.get('/contracts'),sign:id=>A.put(`/contracts/${id}/sign`)};
+export const reviewsAPI={create:d=>A.post('/reviews',d),getForUser:id=>A.get(`/reviews/user/${id}`)};
+export const notifAPI={getAll:()=>A.get('/notifications'),markRead:()=>A.put('/notifications/read')};
+export const messagesAPI={getChats:()=>A.get('/messages'),getThread:id=>A.get(`/messages/${id}`),send:d=>A.post('/messages',d)};
+export const favoritesAPI={toggle:d=>A.post('/favorites',d),getAll:()=>A.get('/favorites')};
+export const usersAPI={search:q=>A.get('/users/search',{params:{q}}),profile:id=>A.get(`/users/${id}`)};
+export const statsAPI={get:()=>A.get('/stats')};
+export default A;
